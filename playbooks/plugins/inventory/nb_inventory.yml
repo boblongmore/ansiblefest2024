@@ -1,0 +1,21 @@
+---
+
+plugin: netbox.netbox.nb_inventory
+validate_certs: false
+# api_endpoint: "{{ api_endpoint}}"
+# token: "{{ token }}"
+config_context: true
+# compose:
+ # ansible_connection: custom_fields.ansible_connection
+use_extra_vars: true
+interfaces: true
+flatten_custom_fields: true
+site_data: true
+group_by:
+  - device_types
+# device_query_filters:
+#   - has_primary_ip: 'true'
+#   - tenant__n: internal
+
+# api_endpoint: export NETBOX_API=http://netbox:8000
+# token: export NETBOX_TOKEN=generated netbox token

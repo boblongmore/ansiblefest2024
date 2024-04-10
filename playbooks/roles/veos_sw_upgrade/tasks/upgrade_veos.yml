@@ -1,0 +1,29 @@
+---
+- name: "Check flash for uploaded sw image {{ eos_version }}"
+  arista.eos.eos_command:
+    commands:
+      - command: "dir flash:/{{ eos_version }}"
+  register: _result
+
+- name: Ensure image is loaded
+  ansible.builtin.assert:
+    that: "'Error' not in {{ _result.stdout }}"
+
+
+- name: Modify boot config
+  arista.eos.eos_config:
+    lines: "boot system flash:/{{ eos_version }}"
+
+- name: Save switch config
+  arista.eos.eos_command:
+    commands: "write"
+
+- name: Reload router
+  arista.eos.eos_command:
+    commands:
+      - command: "reload"
+        prompt:
+          - \[confirm\]
+        answer:
+          - "{{ reload_answer | default('y') }}"
+        newline: false

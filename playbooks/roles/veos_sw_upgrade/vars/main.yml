@@ -1,0 +1,4 @@
+---
+scp_server: 192.168.2.33
+eos_version: "vEOS-Router64-4.23.4M.swi"
+scp_password: Labpass01!

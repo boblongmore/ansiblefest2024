@@ -1,0 +1,9 @@
+---
+
+- name: Perform Arista software upgrade
+  hosts: "{{ dut | default('eda-sw100') }}"
+  gather_facts: false
+
+  tasks:
+    - name: Call roles to kick off upgrade process
+      ansible.builtin.include_roles: veos_sw_upgrade
