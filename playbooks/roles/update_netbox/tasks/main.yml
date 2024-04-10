@@ -1,1 +1,7 @@
 ---
+
+- name: Check if custom field is created
+  ansible.builtin.include_tasks: add_custom_field.yml
+
+- name: Update Current SW Version in Netbox
+  ansible.builtin.include_tasks: add_sw_version.yml

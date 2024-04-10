@@ -1,0 +1,13 @@
+---
+
+- name: Add SW Version to Netbox
+  netbox.netbox.netbox_device:
+    netbox_url: "{{ netbox_api }}"
+    netbox_token: "{{ netbox_token }}"
+    validate_certs: false
+    data:
+      name: "{{ dut | lower }}"
+      custom_fields:
+        Current_SW_Version: 4.22
+    state: "{{ state | default('present') }}"
+  delegate_to: localhost
