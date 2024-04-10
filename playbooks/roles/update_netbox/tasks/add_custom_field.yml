@@ -10,7 +10,8 @@
         - dcim.device
       ui_visibility: read-only
       name: "{{ new_custom_field }}"
-      type: decimal
+      type: text
     state: "{{ state | default('present') }}"
   delegate_to: localhost
   tags: custom
+  when: hostvars[inventory_hostname]['Current_SW_Version'] is undefined

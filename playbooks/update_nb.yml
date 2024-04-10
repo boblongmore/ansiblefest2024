@@ -8,6 +8,3 @@
     - name: Use roles to update fields and values for current SW Version
       ansible.builtin.include_role:
         name: update_netbox
-      vars:
-        update_netbox_code_version: 4.22
-        dut: eda-sw100

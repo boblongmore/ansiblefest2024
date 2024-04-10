@@ -6,4 +6,5 @@
 
   tasks:
     - name: Call roles to kick off upgrade process
-      ansible.builtin.include_roles: veos_sw_upgrade
+      ansible.builtin.include_role:
+        name: veos_sw_upgrade
