@@ -1,0 +1,14 @@
+---
+
+- name: Update Netbox field for current SW version
+  hosts: localhost
+  gather_facts: false
+
+  tasks:
+    - name: Use roles to update fields and values for current SW Version
+      kafkaprod_module:
+        host: fedora01.lab.local
+        port: 9092
+        verify_mode: false
+        topic: ansible-topic
+        data: "{'is this my data':'might be'}"
