@@ -1,11 +1,11 @@
 ---
 
-- name: Update Netbox field for current SW version
+- name: Place messages on kafka bus
   hosts: localhost
   gather_facts: false
 
   tasks:
-    - name: Use roles to update fields and values for current SW Version
+    - name: Use kafkaprod_module to take data and create producer message
       kafkaprod_module:
         host: fedora01.lab.local
         port: 9092
