@@ -5,10 +5,6 @@
   gather_facts: false
 
   tasks:
-    - name: Use kafkaprod_module to take data and create producer message
-      kafkaprod_module:
-        host: fedora01.lab.local
-        port: 9092
-        verify_mode: false
-        topic: ansible-topic
-        data: "{'is this my data':'might be'}"
+    - name: Use messages_kafka role to produce messages
+      ansible.builtin.include_role:
+        name: messages_kafka
