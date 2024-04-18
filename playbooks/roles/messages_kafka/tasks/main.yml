@@ -1,6 +1,5 @@
 ---
 
-
 - name: Use kafkaprod_module to take data and create producer message
   kafkaprod_module:
     host: "{{ messages_kafka_hostname }}"
