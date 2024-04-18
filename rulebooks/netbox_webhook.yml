@@ -1,0 +1,24 @@
+---
+- name: Netbox Webhook
+  hosts: all
+  sources:
+    - name: netbox webhook
+      ansible.eda.webhook:
+        host: 0.0.0.0
+        port: 5000
+        hmac_secret: 'ansiblefest2024'
+        hmac_header: 'X-Hook-Signature'
+        hmac_format: hex
+        hmac_algo: sha512
+  rules:
+    - name: Match EOS SW Version
+      condition: event.payload.data.custom_fields.initiate_upgrade == 'upgrade'
+
+      action:
+        run_job_template:
+          name: Send message to Kafka
+          organization: Default
+          job_args:
+            extra_vars:
+              target_host: "{{ event.payload.data.name }}"
+              sw_version: "{{ event.payload.data.custom_fields.available_sw_version }}"
