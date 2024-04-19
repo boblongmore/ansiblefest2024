@@ -9,8 +9,8 @@
   vars:
     test_name:
       - arista_test_interfaces
-        arista_test_routing
-        arista_test_http
+      - arista_test_routing
+      - arista_test_http
 
   tasks:
     - name: Publish kafka message with test test_results
