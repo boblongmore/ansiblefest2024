@@ -6,12 +6,12 @@
       ansible.eda.kafka:
         host: 192.168.2.32
         port: 9092
-        verify_mode: false
+        # verify_mode: false
         topic: ansiblefest2024
 
   rules:
     - name: Match tests
-      condition: event.body == true
+      condition: event.body is defined
       action:
         debug:
           msg: "{{ event.body }}"
