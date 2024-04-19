@@ -6,18 +6,17 @@
       ansible.eda.kafka:
         host: 192.168.2.32
         port: 9092
-        # verify_mode: false
         topic: ansiblefest2024
 
   rules:
     - name: Match tests
-      condition: event.body is defined
+      condition: event.body.arista_test ==  'arista_test_interfaces'
       action:
         debug:
           msg: "{{ event.body }}"
-        # run_job_template:
-        #   name: Arista-test-interfaces
-        #   organization: Default
-        #   job_args:
-        #     extra_vars:
-        #       dut: "{{ event.body.value.device_name }}"
+        run_job_template:
+          name: Arista-test-interfaces
+          organization: Default
+          job_args:
+            extra_vars:
+              dut: "{{ event.body.device_name }}"
