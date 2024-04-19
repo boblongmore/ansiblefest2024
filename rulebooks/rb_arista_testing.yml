@@ -11,7 +11,7 @@
 
   rules:
     - name: Match tests
-      condition: event.body == true
+      condition: event.value == true
       action:
         debug:
           msg: "{{ event.body }}"
