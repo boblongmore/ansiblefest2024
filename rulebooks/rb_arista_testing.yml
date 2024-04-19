@@ -11,10 +11,10 @@
 
   rules:
     - name: Match tests
-      condition: event == true
+      condition: event.body == true
       action:
         debug:
-          msg: "{{ event }}"
+          msg: "{{ event.body }}"
         # run_job_template:
         #   name: Arista-test-interfaces
         #   organization: Default
