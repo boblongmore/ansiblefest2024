@@ -2,7 +2,7 @@
 
 - name: Initiate Arista SWIM process
   gather_facts: false
-  hosts: "{{ dut }}"
+  hosts: "{{ dut | default('eda-sw100')}}"
   vars_files:
     - "./vars/slack_info.yml"
     - "./vars/kafka_info.yml"
