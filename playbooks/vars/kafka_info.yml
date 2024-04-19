@@ -1,0 +1,3 @@
+messages_kafka_hostname: fedora01.lab.local
+messages_kafka_port: 9092
+messages_kafka_topic: ansiblefest2024
