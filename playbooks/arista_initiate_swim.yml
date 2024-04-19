@@ -13,9 +13,6 @@
         arista_test_http
 
   tasks:
-    - name: Create list of tests to run
-      ansible.builtin.include_vars:
-
     - name: Publish kafka message with test test_results
       bob_private_collection.kafka_python.producer_kafkapy:
         host: "{{ messages_kafka_hostname }}"
