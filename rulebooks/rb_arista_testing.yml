@@ -1,8 +1,8 @@
 ---
-- name: Netbox Webhook
+- name: arista-testing
   hosts: all
   sources:
-    - name: netbox webhook
+    - name: kafka event source
       ansible.eda.kafka:
         host: fedora01.lab.local
         port: 9092
