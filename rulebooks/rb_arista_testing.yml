@@ -1,0 +1,21 @@
+---
+- name: Netbox Webhook
+  hosts: all
+  sources:
+    - name: netbox webhook
+      ansible.eda.kafka:
+        host: fedora01.lab.local
+        port: 9092
+        verify_mode: false
+        topic: ansiblefest2024
+
+  rules:
+    - name: Match tests
+      condition: event.body.value.arista_test == "arista_test_interfaces"
+      action:
+        run_job_template:
+          name: Arista-test-interfaces
+          organization: Default
+          job_args:
+            extra_vars:
+              dut: "{{ event.body.value.device_name }}"

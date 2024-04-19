@@ -1,0 +1,14 @@
+---
+- name: Netbox Webhook
+  hosts: all
+  sources:
+    - name: netbox webhook
+      ansible.eda.kafka:
+        host: fedora01.lab.local
+        port: 9092
+        verify_mode: false
+        topic: ansiblefest2024
+
+  rules:
+    - name: Match sw_upgrade
+      condition: event.body.value.sw_version == "4.23"
