@@ -14,7 +14,7 @@
       condition: event.value == true
       action:
         debug:
-          msg: "{{ event.body }}"
+          msg: "{{ event.value }}"
         # run_job_template:
         #   name: Arista-test-interfaces
         #   organization: Default
