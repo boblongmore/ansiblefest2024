@@ -11,11 +11,13 @@
 
   rules:
     - name: Match tests
-      condition: event.body.value.arista_test == "arista_test_interfaces"
+      condition: event.body
       action:
-        run_job_template:
-          name: Arista-test-interfaces
-          organization: Default
-          job_args:
-            extra_vars:
-              dut: "{{ event.body.value.device_name }}"
+        debug:
+          msg: "{{ event.body }}"
+        # run_job_template:
+        #   name: Arista-test-interfaces
+        #   organization: Default
+        #   job_args:
+        #     extra_vars:
+        #       dut: "{{ event.body.value.device_name }}"
