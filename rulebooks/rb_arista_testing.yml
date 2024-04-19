@@ -4,7 +4,7 @@
   sources:
     - name: kafka event source
       ansible.eda.kafka:
-        host: fedora01.lab.local
+        host: 192.168.2.32
         port: 9092
         verify_mode: false
         topic: ansiblefest2024
