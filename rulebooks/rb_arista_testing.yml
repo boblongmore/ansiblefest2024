@@ -10,7 +10,7 @@
 
   rules:
     - name: Match tests
-      condition: event.body.arista_test ==  'arista_test_interfaces'
+      condition: event.body.test_name ==  'arista_test_interfaces'
       action:
         debug:
           msg: "{{ event.body }}"

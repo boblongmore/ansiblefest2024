@@ -3,5 +3,5 @@
 messages_kafka_hostname: fedora01.lab.local
 messages_kafka_port: 9092
 
-messages_kafka_topic: arista-test-data
-messages_kafka_data: "{'arista':'data', 'details:{'nested_data':'more'}}"
+messages_kafka_topic: ansiblefest2024
+messages_kafka_data: {'device_name':'eda-sw100', 'test_name': 'arista_test_interfaces'}

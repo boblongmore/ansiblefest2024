@@ -87,7 +87,7 @@ def run_module():
         verify_mode=dict(type='bool', required=False, default=True),
         topic=dict(type='str', required=True),
         group_id=dict(type='str', required=False),
-        data=dict(type='str', required=False)
+        data=dict(type='dict', required=False)
     )
 
     # seed the result dict in the object
