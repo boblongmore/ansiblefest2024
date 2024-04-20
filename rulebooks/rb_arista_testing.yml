@@ -9,11 +9,31 @@
         topic: ansiblefest2024
 
   rules:
-    - name: Match tests
+    - name: Match Interface tests
       condition: event.body.test_name ==  'arista_test_interfaces'
       action:
         run_job_template:
           name: Arista-test-interfaces
+          organization: Default
+          job_args:
+            extra_vars:
+              dut: "{{ event.body.device_name }}"
+
+    - name: Match routing tests
+      condition: event.body.test_name ==  'arista_test_routing'
+      action:
+        run_job_template:
+          name: Arista-test-routing
+          organization: Default
+          job_args:
+            extra_vars:
+              dut: "{{ event.body.device_name }}"
+
+    - name: Match http tests
+      condition: event.body.test_name ==  'arista_test_http'
+      action:
+        run_job_template:
+          name: Arista-http-tests
           organization: Default
           job_args:
             extra_vars:
