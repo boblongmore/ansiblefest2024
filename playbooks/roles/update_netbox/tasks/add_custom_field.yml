@@ -14,4 +14,4 @@
     state: "{{ state | default('present') }}"
   delegate_to: localhost
   tags: custom
-  when: hostvars[inventory_hostname]['Current_SW_Version'] is undefined
+  when: hostvars[inventory_hostname]['current_sw_Version'] is undefined

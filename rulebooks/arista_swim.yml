@@ -11,4 +11,4 @@
 
   rules:
     - name: Match sw_upgrade
-      condition: event.body.value.sw_version == "4.23"
+      condition: event.body.value.sw_version == "4.23.4M"
