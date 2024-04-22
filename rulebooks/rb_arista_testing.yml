@@ -28,8 +28,6 @@
               sw_version: "{{ event.payload.data.custom_fields.available_sw_version }}"
 
         post_event:
-          name: Authorize SW upgrade
-          organization: Default
           event:
             data: arista_sw_upgrade_authorized
             dut: "{{ event.payload.data.name }}"
