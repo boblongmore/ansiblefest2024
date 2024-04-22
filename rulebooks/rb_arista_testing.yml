@@ -9,6 +9,33 @@
         topic: ansiblefest2024
 
   rules:
+
+    # Rule to initate upgrade by matching upgrade text and that running and
+    # intented sw versions are different
+    - name: Match EOS SW Version
+      condition:
+        all:
+          - event.payload.data.custom_fields.initiate_upgrade == 'upgrade'
+          - event.payload.data.custom_fields.available_sw_version != event.payload.data.custom_fields.current_sw_version
+
+      action:
+        run_job_template:
+          name: arista_initiate_swim
+          organization: Default
+          job_args:
+            extra_vars:
+              dut: "{{ event.payload.data.name }}"
+              sw_version: "{{ event.payload.data.custom_fields.available_sw_version }}"
+
+        post_event:
+          name: Authorize SW upgrade
+          organization: Default
+          event:
+            data: arista_sw_upgrade_authorized
+            dut: "{{ event.payload.data.name }}"
+            sw_version: "{{ event.payload.data.custom_fields.available_sw_version  }}"
+
+    # Rule to kick off arista interface testing
     - name: Match Interface tests
       condition: event.body.test_name ==  'arista_test_interfaces'
       action:
@@ -19,6 +46,7 @@
             extra_vars:
               dut: "{{ event.body.device_name }}"
 
+    # Rule to kick off arista routing testing
     - name: Match routing tests
       condition: event.body.test_name ==  'arista_test_routing'
       action:
@@ -29,6 +57,7 @@
             extra_vars:
               dut: "{{ event.body.device_name }}"
 
+    # Rule to kick off arista HTTP testing
     - name: Match http tests
       condition: event.body.test_name ==  'arista_test_http'
       action:
@@ -38,3 +67,21 @@
           job_args:
             extra_vars:
               dut: "{{ event.body.device_name }}"
+
+    # rule to match that all arista tests have passed and the sw process has been authorized
+    - name: Match upgrade events
+      condition: >-
+        event.body.data == "arista_sw_upgrade_authorized" and
+        event.body.test_status == "Interface tests passed" and
+        event.body.test_status == "HTTP tests passed" and
+        event.body.test_status == "Routing tests passed"
+
+
+      action:
+        run_job_template:
+          name: Arista-upgrade-device
+          organization: Default
+          job_args:
+            extra_vars:
+              dut: "{{ event.body.dut }}"
+              sw_version: "{{ event.body.sw_version }}"
