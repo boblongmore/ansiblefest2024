@@ -10,29 +10,6 @@
 
   rules:
 
-    # Rule to initate upgrade by matching upgrade text and that running and
-    # intented sw versions are different
-    - name: Match EOS SW Version
-      condition:
-        all:
-          - event.payload.data.custom_fields.initiate_upgrade == 'upgrade'
-          - event.payload.data.custom_fields.available_sw_version != event.payload.data.custom_fields.current_sw_version
-
-      action:
-        run_job_template:
-          name: arista_initiate_swim
-          organization: Default
-          job_args:
-            extra_vars:
-              dut: "{{ event.payload.data.name }}"
-              sw_version: "{{ event.payload.data.custom_fields.available_sw_version }}"
-
-        post_event:
-          event:
-            data: arista_sw_upgrade_authorized
-            dut: "{{ event.payload.data.name }}"
-            sw_version: "{{ event.payload.data.custom_fields.available_sw_version  }}"
-
     # Rule to kick off arista interface testing
     - name: Match Interface tests
       condition: event.body.test_name ==  'arista_test_interfaces'
