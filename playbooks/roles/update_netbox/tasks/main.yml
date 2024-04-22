@@ -7,5 +7,5 @@
   ansible.builtin.include_tasks: add_sw_version.yml
 
 - name: Update Available SW Version in Netbox
-  ansible.builtin.include_tasks: add_available_sw_version.yml
+  ansible.builtin.include_tasks: add_avail_sw_version.yml
   when: update_netbox_avail_sw_version is defined
