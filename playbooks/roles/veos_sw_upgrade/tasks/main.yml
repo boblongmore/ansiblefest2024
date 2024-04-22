@@ -1,7 +1,8 @@
 ---
 
-- name: Copy sw image
-  ansible.builtin.import_tasks: copy_sw_image.yml
-
-- name: Upgrade software image to "{{ eos_version }}"
-  ansible.builtin.import_tasks: upgrade_veos.yml
+- name: Print message complete
+  ansible.builtin.debug:
+    msg:
+      - "veos_sw_upgrade initiated"
+      - "{{ dut }}"
+      = "{{ sw_version }}"

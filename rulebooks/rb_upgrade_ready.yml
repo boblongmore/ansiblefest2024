@@ -1,0 +1,28 @@
+---
+# Rulebook initates upgrade playbook when upgrade request received and all tests have passed
+- name: Arista upgrade ready
+  hosts: all
+  sources:
+    - name: kafka event source
+      ansible.eda.kafka:
+        host: 192.168.2.32
+        port: 9092
+        topic: ansiblefest2024
+
+  rules:
+    - name: Match upgrade events
+      condition: >-
+        event.body.ruleset == "arista_sw_upgrade_authorized" and
+        event.body.test_status == "Interface tests passed" and
+        event.body.test_status == "HTTP tests passed" and
+        event.body.test_status == "Routing tests passed"
+
+
+      action:
+        run_job_template:
+          name: Arista-upgrade-device
+          organization: Default
+          job_args:
+            extra_vars:
+              dut: "{{ event.body.dut }}"
+              sw_version: "{{ event.body.sw_version }}"
