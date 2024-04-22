@@ -6,8 +6,11 @@
     - name: netbox webhook
       ansible.eda.webhook:
         host: 0.0.0.0
-        port: 5001
-
+        port: 5000
+        hmac_secret: 'ansiblefest2024'
+        hmac_header: 'X-Hook-Signature'
+        hmac_format: hex
+        hmac_algo: sha512
   rules:
     - name: Match EOS SW Version
       condition:
@@ -24,8 +27,9 @@
               dut: "{{ event.payload.data.name }}"
               sw_version: "{{ event.payload.data.custom_fields.available_sw_version }}"
 
-        post_event:
-          event:
-            upgrade_auth: arista_sw_upgrade_authorized
-            dut: "{{ event.payload.data.name }}"
-            sw_version: "{{ event.payload.data.custom_fields.available_sw_version  }}"
+#         post_event:
+#           event:
+#             upgrade_auth: arista_sw_upgrade_authorized
+#             dut: "{{ event.payload.data.name }}"
+#             sw_version: "{{ event.payload.data.custom_fields.available_sw_version  }}"
+#
