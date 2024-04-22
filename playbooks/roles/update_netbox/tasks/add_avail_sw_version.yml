@@ -1,11 +1,6 @@
 ---
 
-- name: Retrieve current SW version from Arista Device
-  arista.eos.eos_facts:
-    gather_subset: all
-  register: eos
-
-- name: Add SW Version to Netbox
+- name: Add Available SW Version to Netbox
   netbox.netbox.netbox_device:
     netbox_url: "{{ netbox_api }}"
     netbox_token: "{{ netbox_token }}"
