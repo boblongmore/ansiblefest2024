@@ -6,7 +6,7 @@
 
   tasks:
     - name: Use roles to update fields and values for current and avail SW Version
-      ansible.builtin.include_role:
+      ansible.builtin.import_role:
         name: update_netbox
       vars:
-        update_netbox_avail_sw_version == "4.23"
+        update_netbox_avail_sw_version: "4.23"
