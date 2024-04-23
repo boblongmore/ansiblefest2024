@@ -50,8 +50,6 @@
         event.body.test_status == "Interface tests passed" and
         event.body.test_status == "HTTP tests passed" and
         event.body.test_status == "Routing tests passed"
-      throttle:
-        once_within: 5 minutes
 
 
       action:
