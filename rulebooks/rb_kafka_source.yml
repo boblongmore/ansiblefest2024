@@ -66,8 +66,8 @@
     - name: Match device name
       condition:
         all:
-          - event.body.upgrade.device_name is defined
+          - event.dut << event.body.upgrade.device_name is defined
 
       action:
         debug:
-          msg: "{{ event.body.upgrade.device_name }}"
+          msg: "{{ event.dut.event.body.upgrade.device_name }}"
