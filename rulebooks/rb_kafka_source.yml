@@ -70,4 +70,4 @@
 
       action:
         debug:
-          msg: "{{ events.first }}"
+          msg: "{{ events.first.body.upgrade.device_name }}"
