@@ -47,7 +47,7 @@
     - name: Match upgrade events
       condition:
         all:
-          - event.body.upgrade_authorized == "arista_sw_upgrade_authorized"
+          - event.body.upgrade.upgrade_authorized == "arista_sw_upgrade_authorized"
           - event.body.test_status == "Interface_tests_passed"
           - event.body.test_status == "HTTP_tests_passed"
           - event.body.test_status == "Routing_tests_passed"
@@ -58,5 +58,5 @@
           organization: Default
           job_args:
             extra_vars:
-              dut: "{{ event.body.device_name }}"
-        #       # sw_version: "{{ event.body.sw_version }}"
+              dut: "{{ event.body.upgrade.device_name }}"
+        #      # sw_version: "{{ event.body.sw_version }}"
