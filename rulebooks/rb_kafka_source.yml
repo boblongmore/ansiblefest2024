@@ -70,4 +70,4 @@
 
       action:
         debug:
-          msg: "{{ event.dut.event.body.upgrade.device_name }}"
+          msg: "{{ events.dut.event.body.upgrade.device_name }}"
