@@ -55,10 +55,10 @@
 
       action:
         print_event:
-        run_job_template:
-          name: Arista-upgrade-device
-          organization: Default
-          job_args:
-            extra_vars:
-              dut: "{{ event.body.dut }}"
-              sw_version: "{{ event.body.sw_version }}"
+        # run_job_template:
+        #   name: Arista-upgrade-device
+        #   organization: Default
+        #   job_args:
+        #     extra_vars:
+        #       dut: "{{ event.body.device_name }}"
+        #       # sw_version: "{{ event.body.sw_version }}"
