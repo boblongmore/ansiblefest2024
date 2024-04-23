@@ -53,6 +53,7 @@
 
 
       action:
+        print_event:
         run_job_template:
           name: Arista-upgrade-device
           organization: Default
