@@ -46,11 +46,10 @@
     # rule to match that all arista tests have passed and the sw process has been authorized
     - name: Match upgrade events
       condition: >-
-        event.body.upgrade_authorized == "arista_sw_upgrade_authorized"
-
-      #  event.body.test_status == "Interface_tests_passed" and
-      #  event.body.test_status == "HTTP_tests_passed" and
-      #  event.body.test_status == "Routing_tests_passed"
+        event.body.upgrade_authorized == "arista_sw_upgrade_authorized" and
+        event.body.test_status == "Interface_tests_passed" and
+        event.body.test_status == "HTTP_tests_passed" and
+        event.body.test_status == "Routing_tests_passed"
 
 
       action:
