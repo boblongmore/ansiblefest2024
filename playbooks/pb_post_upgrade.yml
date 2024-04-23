@@ -14,6 +14,21 @@
       - arista_test_sw_version
 
   tasks:
+
+    - name: Publish kafka message with tests to run
+      bob_private_collection.kafka_python.producer_kafkapy:
+        host: "{{ messages_kafka_hostname }}"
+        port: "{{ messages_kafka_port }}"
+        verify_mode: false
+        topic: "{{ messages_kafka_topic }}"
+        data: {
+          "upgrade" {
+            "device_name": "{{ inventory_hostname }}",
+            "upgrade_status": "complete",
+            "sw_version": "{{ sw_version }}"
+          }
+        }
+
     - name: Publish kafka message with tests to run
       bob_private_collection.kafka_python.producer_kafkapy:
         host: "{{ messages_kafka_hostname }}"
