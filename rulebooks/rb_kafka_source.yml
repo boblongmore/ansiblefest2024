@@ -66,7 +66,7 @@
       condition:
         all:
           - events.first << event.body.upgrade.device_name is defined and event.body.upgrade.upgrade_authorized == "arista_sw_upgrade_authorized"
-
+          - event.body.test_status == "Interface_tests_passed"
 
       action:
         debug:
