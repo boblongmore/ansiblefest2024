@@ -53,8 +53,6 @@
           - event.body.test_status == "Routing_tests_passed"
 
       action:
-        print_event:
-          pretty: true
         run_job_template:
           name: Arista-upgrade-device
           organization: Default
