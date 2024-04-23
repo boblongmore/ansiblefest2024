@@ -47,7 +47,7 @@
     - name: Match upgrade events
       condition:
         all:
-          - events.dut << event.body.upgrade.device_name is defined
+          - event.body.upgrade.device_name is defined
           - event.body.upgrade.upgrade_authorized == "arista_sw_upgrade_authorized"
           - event.body.test_status == "Interface_tests_passed"
           - event.body.test_status == "HTTP_tests_passed"
@@ -59,6 +59,6 @@
           organization: Default
           job_args:
             extra_vars:
-              dut: "{{ events.dut.event.body.upgrade.device_name }}"
-              # dut: "eda-sw100"
+              # dut: "{{ events.dut.event.body.upgrade.device_name }}"
+              dut: "eda-sw100"
         #      # sw_version: "{{ event.body.sw_version }}"
