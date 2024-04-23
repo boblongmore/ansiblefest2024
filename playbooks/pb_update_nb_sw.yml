@@ -3,6 +3,8 @@
 - name: Update Netbox field for current SW version
   hosts: "{{ dut | default('eda-sw100') }}"
   gather_facts: false
+  vars_files:
+    - "./vars/netbox_info.yml"
 
   tasks:
     - name: Use roles to update fields and values for current and avail SW Version
