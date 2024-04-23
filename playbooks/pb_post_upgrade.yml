@@ -24,7 +24,7 @@
         data: {
           "upgrade": {
             "device_name": "{{ inventory_hostname }}",
-            "upgrade_status": "post",
+            "upgrade_status": "complete",
             "sw_version": "{{ sw_version }}"
           }
         }
