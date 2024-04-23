@@ -22,9 +22,9 @@
         verify_mode: false
         topic: "{{ messages_kafka_topic }}"
         data: {
-          "upgrade" {
+          "upgrade": {
             "device_name": "{{ inventory_hostname }}",
-            "upgrade_status": "complete",
+            "upgrade_status": "post",
             "sw_version": "{{ sw_version }}"
           }
         }
