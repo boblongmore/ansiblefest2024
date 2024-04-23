@@ -70,4 +70,4 @@
 
       action:
         debug:
-          msg: "{{ passed }}"
+          msg: "passed"
