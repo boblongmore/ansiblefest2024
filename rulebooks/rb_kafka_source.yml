@@ -64,7 +64,7 @@
         #      # sw_version: "{{ event.body.sw_version }}"
 
     - name: Match device name
-      condition: event.body.upgrade.upgrade_authorized == "arista_sw_upgrade_authorized"
+      condition: event.body.upgrade.upgrade_authorized is defined
 
       action:
         debug:
