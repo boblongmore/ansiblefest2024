@@ -49,7 +49,7 @@
         all:
           - event.body.upgrade_authorized == "arista_sw_upgrade_authorized"
           - event.body.test_status == "Interface_tests_passed"
-          - event.body.test_status == "HTTP_tests_passed" and
+          - event.body.test_status == "HTTP_tests_passed"
           - event.body.test_status == "Routing_tests_passed"
 
       action:
