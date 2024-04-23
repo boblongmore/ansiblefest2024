@@ -64,7 +64,9 @@
         #      # sw_version: "{{ event.body.sw_version }}"
 
     - name: Match device name
-      condition: event.body.upgrade.upgrade_authorized is defined
+      condition:
+        all:
+          - event.body.upgrade.upgrade_authorized is defined
 
       action:
         debug:
