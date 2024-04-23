@@ -1,0 +1,17 @@
+---
+
+- name: Initiate Arista SWIM process
+  gather_facts: false
+  hosts: "{{ dut | default('eda-sw100')}}"
+  vars_files:
+    - "./vars/slack_info.yml"
+    - "./vars/kafka_info.yml"
+
+  tasks:
+    - name: Update current sw version in netbox
+      ansible.builtin.include_role:
+        name: update_netbox
+      vars:
+        update_sw_version: true
+
+    # - name: send slack message

@@ -3,5 +3,13 @@
 - name: Copy sw image
   ansible.builtin.import_tasks: copy_sw_image.yml
 
-- name: Upgrade software image to "{{ eos_version }}"
+- name: Upgrade software image to "{{ sw_version }}"
   ansible.builtin.import_tasks: upgrade_veos.yml
+
+- name: Publish message stating that SW upgrade is done
+  ansible.builtin.include_role:
+    name: update_netbox
+  vars:
+    sw_version: "{{ sw_version }}"
+    dut: "{{ inventory_hostname }}"
+    upgrade_status: "complete"

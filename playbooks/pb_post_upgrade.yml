@@ -11,6 +11,7 @@
       - arista_test_interfaces
       - arista_test_routing
       - arista_test_http
+      - arista_test_sw_version
 
   tasks:
     - name: Publish kafka message with tests to run
