@@ -66,8 +66,8 @@
     - name: Match device name
       condition:
         all:
-          - event.body.upgrade.upgrade_authorized == "arista_sw_upgrade_authorized"
+          - event.body.upgrade.device_name is defined
 
       action:
         debug:
-          msg: "{{ event.m_0 }}"
+          msg: "{{ passed }}"
