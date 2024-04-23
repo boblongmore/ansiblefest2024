@@ -1,6 +1,6 @@
 ---
 
-- name: Initiate Arista SWIM process
+- name: Initiate Arista SWIM cleanup process
   gather_facts: false
   hosts: "{{ dut | default('eda-sw100')}}"
   vars_files:

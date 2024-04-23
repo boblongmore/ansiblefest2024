@@ -8,7 +8,7 @@
 
 - name: Publish message stating that SW upgrade is done
   ansible.builtin.include_role:
-    name: update_netbox
+    name: messages_kafka
   vars:
     sw_version: "{{ sw_version }}"
     dut: "{{ inventory_hostname }}"
