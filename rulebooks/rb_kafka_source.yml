@@ -21,6 +21,7 @@
             extra_vars:
               dut: "{{ event.body.device_name }}"
 
+
     # Rule to kick off arista routing testing
     - name: Match routing tests
       condition: event.body.test_name ==  'arista_test_routing'
@@ -65,6 +66,7 @@
           - event.body.test_status == "Interface_tests_passed"
           - event.body.test_status == "HTTP_tests_passed"
           - event.body.test_status == "Routing_tests_passed"
+        timeout: 3
 
       action:
         run_job_template:
@@ -101,7 +103,7 @@
           - event.body.test_status == "HTTP_tests_passed"
           - event.body.test_status == "Routing_tests_passed"
           - event.body.test_status == "upgrade_sw_version_passed"
-
+        timeout: 3
       action:
         run_job_template:
           name: Arista-swim-cleanup
