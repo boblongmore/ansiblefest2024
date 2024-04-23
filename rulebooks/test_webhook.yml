@@ -7,6 +7,10 @@
       ansible.eda.webhook:
         host: 0.0.0.0
         port: 5000
+        hmac_secret: 'ansiblefest2024'
+        hmac_header: 'X-Hook-Signature'
+        hmac_format: hex
+        hmac_algo: sha512
 
   rules:
     - name: Match EOS SW Version
@@ -14,4 +18,4 @@
 
       action:
         debug:
-          msg: "{{ event.payload.data.custom_fields.available_sw_version }}"
+          msg: "{{ event.payload.data.custom_fields.current_sw_version }}"
