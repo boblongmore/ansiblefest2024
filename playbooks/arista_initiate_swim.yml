@@ -22,7 +22,8 @@
         data: {
           "upgrade": {
             "upgrade_authorized": "arista_sw_upgrade_authorized",
-            "device_name": "{{ dut }}"
+            "device_name": "{{ dut }}",
+            "sw_version":  "{{ sw_version }}"
           }
         }
 

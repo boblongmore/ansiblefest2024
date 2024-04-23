@@ -25,4 +25,3 @@
             extra_vars:
               dut: "{{ event.payload.data.name }}"
               sw_version: "{{ event.payload.data.custom_fields.available_sw_version }}"
-              upgrade
