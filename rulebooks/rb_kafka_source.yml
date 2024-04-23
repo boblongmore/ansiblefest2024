@@ -56,6 +56,7 @@
 
       action:
         print_event:
+          pretty: true
         # run_job_template:
         #   name: Arista-upgrade-device
         #   organization: Default
