@@ -10,6 +10,8 @@
   ansible.builtin.include_role:
     name: messages_kafka
   vars:
-    sw_version: "{{ sw_version }}"
-    dut: "{{ inventory_hostname }}"
-    upgrade_status: "complete"
+    messages_kafka_data: {
+      "sw_version": "{{ sw_version }}",
+      "dut": "{{ inventory_hostname }}",
+      "upgrade_status": "complete"
+    }
