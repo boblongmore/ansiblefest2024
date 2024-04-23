@@ -63,8 +63,10 @@
 
     - name: Match device name
       condition:
-        all:
-          - event.body.upgrade.device_name is defined and event.body.upgrade.upgrade_authorized == "arista_sw_upgrade_authorized" and event.body.upgrade.sw_version  is defined
+        all: |
+          - event.body.upgrade.device_name is defined and
+            event.body.upgrade.upgrade_authorized == "arista_sw_upgrade_authorized" and
+            event.body.upgrade.sw_version is defined
           - event.body.test_status == "Interface_tests_passed"
           - event.body.test_status == "HTTP_tests_passed"
           - event.body.test_status == "Routing_tests_passed"
