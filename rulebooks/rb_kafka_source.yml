@@ -44,34 +44,10 @@
               dut: "{{ event.body.device_name }}"
 
 
-    - name: Match ugprade events
-      condition:
-        all:
-          - event.body.upgrade.upgrade_authorized == "arista_sw_upgrade_authorized"
-          - event.body.test_status == "Interface_tests_passed"
-          - event.body.test_status == "HTTP_tests_passed"
-          - event.body.test_status == "Routing_tests_passed"
-
-      action:
-        set_fact:
-          fact:
-            dut: event.body.upgrade.device_name
-
-
-        print_event:
-          pretty_print: true
-        # run_job_template:
-        #   name: Arista-upgrade-device
-        #   organization: Default
-        #   job_args:
-        #     extra_vars:
-        #       # dut: "{{ event.body.upgrade.device_name }}"
-        #       dut: "eda-sw100"
-        # #      # sw_version: "{{ event.body.sw_version }}"
-    # rule to match that all arista tests have passed and the sw process has been authorized
     - name: Match upgrade events
       condition:
         all:
+          - dut << event.body.upgrade.device_name is defined
           - event.body.upgrade.upgrade_authorized == "arista_sw_upgrade_authorized"
           - event.body.test_status == "Interface_tests_passed"
           - event.body.test_status == "HTTP_tests_passed"
@@ -83,6 +59,6 @@
           organization: Default
           job_args:
             extra_vars:
-              # dut: "{{ event.body.upgrade.device_name }}"
-              dut: "eda-sw100"
+              dut: "{{ dut }}"
+              # dut: "eda-sw100"
         #      # sw_version: "{{ event.body.sw_version }}"
