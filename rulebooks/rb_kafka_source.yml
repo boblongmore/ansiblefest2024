@@ -66,7 +66,7 @@
           - event.body.test_status == "Interface_tests_passed"
           - event.body.test_status == "HTTP_tests_passed"
           - event.body.test_status == "Routing_tests_passed"
-        timeout: 3
+        timeout: 3 minutes
 
       action:
         run_job_template:
@@ -103,7 +103,7 @@
           - event.body.test_status == "HTTP_tests_passed"
           - event.body.test_status == "Routing_tests_passed"
           - event.body.test_status == "upgrade_sw_version_passed"
-        timeout: 3
+        timeout: 3 minutes
       action:
         run_job_template:
           name: Arista-swim-cleanup
