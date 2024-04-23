@@ -58,5 +58,6 @@
           organization: Default
           job_args:
             extra_vars:
-              dut: "{{ event.body.upgrade.device_name }}"
+              # dut: "{{ event.body.upgrade.device_name }}"
+              dut: "eda-sw100"
         #      # sw_version: "{{ event.body.sw_version }}"
