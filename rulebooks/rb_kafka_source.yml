@@ -66,8 +66,8 @@
     - name: Match device name
       condition:
         all:
-          - events.dut << event.body.upgrade.device_name contains "eda"
+          - event.body.upgrade.device_name is defined
 
       action:
         debug:
-          msg: "{{ events.dut.event.body.upgrade.device_name }}"
+          msg: "{{ events.m_0 }}"
