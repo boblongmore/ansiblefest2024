@@ -47,7 +47,7 @@
     - name: Match upgrade events
       condition:
         all:
-          - event.body.upgrade.device_name == true
+          # - event.body.upgrade.device_name == true
           - event.body.upgrade.upgrade_authorized == "arista_sw_upgrade_authorized"
           - event.body.test_status == "Interface_tests_passed"
           - event.body.test_status == "HTTP_tests_passed"
@@ -62,3 +62,10 @@
               # dut: "{{ events.dut.event.body.upgrade.device_name }}"
               dut: "eda-sw100"
         #      # sw_version: "{{ event.body.sw_version }}"
+
+    - name: Match device name
+      condition: event.body.upgrade.upgrade_authorized == "arista_sw_upgrade_authorized"
+
+      action:
+        debug:
+          msg: "{{ event.body.upgrade.device_name }}"
