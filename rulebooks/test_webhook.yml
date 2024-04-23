@@ -14,4 +14,4 @@
 
       action:
         debug:
-          msg: "{{ event.payload }}"
+          msg: "{{ event.payload.data.custom_fields.available_sw_version }}"
