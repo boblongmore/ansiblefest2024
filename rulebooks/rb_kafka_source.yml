@@ -47,9 +47,9 @@
     - name: Match upgrade events
       condition: >-
         event.body.upgrade_authorized == "arista_sw_upgrade_authorized" and
-        event.body.test_status == "Interface tests passed" and
-        event.body.test_status == "HTTP tests passed" and
-        event.body.test_status == "Routing tests passed"
+        event.body.test_status == "Interface_tests_passed" and
+        event.body.test_status == "HTTP_tests_passed" and
+        event.body.test_status == "Routing_tests_passed"
 
 
       action:
