@@ -71,4 +71,9 @@
 
       action:
         run_job_template:
-          name: Arista-
+          name: Arista-post-upgrade
+          organization: Default
+          job_args:
+            extra_vars:
+              dut: "{{ event.body.dut }}"
+              sw_version: "{{ event.body.sw_version }}"
