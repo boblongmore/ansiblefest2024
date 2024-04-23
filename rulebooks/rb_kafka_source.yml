@@ -66,7 +66,7 @@
     - name: Match post upgrade events
       condition: >-
           event.body.upgrade_status == "complete" and
-          event.body.dut is defined
+          event.body.dut is defined and
           event.body.sw_version is defined
 
       action:
