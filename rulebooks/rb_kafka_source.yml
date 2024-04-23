@@ -43,25 +43,7 @@
             extra_vars:
               dut: "{{ event.body.device_name }}"
 
-#     - name: Match upgrade events
-#       condition:
-#         all:
-#           - event.body.upgrade.device_name is defined and event.body.upgrade.upgrade_authorized == "arista_sw_upgrade_authorized"
-#           - event.body.test_status == "Interface_tests_passed"
-#           - event.body.test_status == "HTTP_tests_passed"
-#           - event.body.test_status == "Routing_tests_passed"
-#
-#       action:
-#         run_job_template:
-#           name: Arista-upgrade-device
-#           organization: Default
-#           job_args:
-#             extra_vars:
-#               dut: "{{ events.m_0.body.upgrade.device_name }}"
-#               # dut: "eda-sw100"
-#         #      # sw_version: "{{ event.body.sw_version }}"
-
-    - name: Match device name
+    - name: Match upgrade events
       condition:
         all:
           - >-
@@ -73,5 +55,26 @@
           - event.body.test_status == "Routing_tests_passed"
 
       action:
-        debug:
-          msg: "{{ events.m_0.body.upgrade.sw_version }}"
+        run_job_template:
+          name: Arista-upgrade-device
+          organization: Default
+          job_args:
+            extra_vars:
+              dut: "{{ events.m_0.body.upgrade.device_name }}"
+              sw_version: "{{ events.m_0.body.upgrade.sw_version }}"
+
+#    - name: Match device name
+#      condition:
+#        all:
+#          - >-
+#            event.body.upgrade.device_name is defined and
+#            event.body.upgrade.upgrade_authorized == "arista_sw_upgrade_authorized" and
+#            event.body.upgrade.sw_version is defined
+#          - event.body.test_status == "Interface_tests_passed"
+#          - event.body.test_status == "HTTP_tests_passed"
+#          - event.body.test_status == "Routing_tests_passed"
+#
+#      action:
+#        debug:
+#          msg: "{{ events.m_0.body.upgrade.sw_version }}"
+#

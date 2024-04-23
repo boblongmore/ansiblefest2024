@@ -5,4 +5,4 @@
     msg:
       - "veos_sw_upgrade initiated"
       - "{{ dut }}"
-      # - "{{ sw_version }}"
+      - "{{ sw_version }}"
