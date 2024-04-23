@@ -43,7 +43,7 @@
             extra_vars:
               dut: "{{ event.body.device_name }}"
 
-    # Rule to kick off sw version testin
+    # Rule to kick off sw version testing
     - name: Match sw version tests
       condition: event.body.test_name ==  'arista_test_sw_version'
       action:
