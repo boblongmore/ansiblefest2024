@@ -6,6 +6,7 @@
   vars_files:
     - "./vars/slack_info.yml"
     - "./vars/kafka_info.yml"
+    - "./vars/netbox_info.yml"
 
   tasks:
     - name: Update current sw version in netbox
