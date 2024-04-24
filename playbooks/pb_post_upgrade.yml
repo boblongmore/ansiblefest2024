@@ -15,7 +15,7 @@
 
   tasks:
 
-    - name: Publish kafka message with tests to run
+    - name: Publish kafka message with upgrade status
       ansible.builtin.include_role:
         name: messages_kafka
       vars:
