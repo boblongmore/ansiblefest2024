@@ -18,20 +18,20 @@
     - name: Publish kafka message with tests to run
       ansible.builtin.include_role:
         name: messages_kafka
-        vars:
-          messages_kafka_data: {
-            "upgrade": {
-            "device_name": "{{ inventory_hostname }}",
-            "upgrade_status": "complete",
-            "sw_version": "{{ sw_version }}"
-            }
+      vars:
+        messages_kafka_data: {
+          "upgrade": {
+          "device_name": "{{ inventory_hostname }}",
+          "upgrade_status": "complete",
+          "sw_version": "{{ sw_version }}"
           }
+        }
 
     - name: Publish kafka message with tests to run
       ansible.builtin.include_role:
         name: messages_kafka
-        vars:
-          messages_kafka_data: "{{ lookup('ansible.builtin.template', '../templates/arista_test_run.j2') }}"
+      vars:
+        messages_kafka_data: "{{ lookup('ansible.builtin.template', '../templates/arista_test_run.j2') }}"
       loop: "{{ test_name }}"
 
     # - name: send slack message
