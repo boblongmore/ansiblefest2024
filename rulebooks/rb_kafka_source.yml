@@ -46,7 +46,7 @@
 
     # Rule to kick off sw version testing
     - name: Match sw version tests
-      condition: event.body.test_name ==  'arista_test_sw_version'
+      condition: event.body.test_name == 'arista_test_sw_version'
       action:
         run_job_template:
           name: Arista-test-sw-version
