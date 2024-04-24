@@ -109,10 +109,10 @@
         timeout: 3 minutes
 
       action:
-         run_job_template:
-           name: Arista-swim-cleanup
-           organization: Default
-           job_args:
-             extra_vars:
-               dut: "{{ events.m_0.body.upgrade.device_name }}"
-               # sw_version: "{{ events.m_0.body.upgrade.sw_version }}"
+        run_job_template:
+          name: Arista-swim-cleanup
+          organization: Default
+          job_args:
+            extra_vars:
+              dut: "{{ events.m_0.body.upgrade.device_name }}"
+              # sw_version: "{{ events.m_0.body.upgrade.sw_version }}"
