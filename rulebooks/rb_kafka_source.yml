@@ -78,13 +78,14 @@
               sw_version: "{{ events.m_0.body.upgrade.sw_version }}"
 
     - name: Match post upgrade events
-      condition:
-        all: >-
+      condition: >-
           event.body.upgrade_status == "post" and
           event.body.dut is defined and
           event.body.sw_version is defined
-        timeout: 1 minute
-
+      throttle:
+        once_within: 2 minutes
+        group_by_attributes:
+          - event.body.dut
 
       action:
         run_job_template:
