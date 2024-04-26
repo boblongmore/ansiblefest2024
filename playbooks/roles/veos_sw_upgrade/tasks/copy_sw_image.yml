@@ -4,7 +4,7 @@
   arista.eos.eos_command:
     commands:
       - command: "copy scp://{{ veos_sw_upgrade_un }}@{{ veos_sw_upgrade_scp_server }}/arista-veos/{{ eos_version }} vrf mgmt flash:/{{ eos_version }}"
-        check_all: false
+        check_all: true
         prompt:
           - "{{ veos_sw_upgrade_un }}@{{ veos_sw_upgrade_scp_server }}'s password:"
          # - "password:"
