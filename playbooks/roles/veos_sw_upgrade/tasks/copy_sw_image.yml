@@ -7,6 +7,6 @@
         check_all: true
         prompt:
           # - "{{ veos_sw_upgrade_un }}@{{ veos_sw_upgrade_scp_server }}'s password:"
-          - root@192.168.2.33's password:
+          - "root@192.168.2.33's password: "
         answer:
           - "{{ veos_sw_upgrade_cp_password }}"
