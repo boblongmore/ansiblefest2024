@@ -1,4 +1,6 @@
 ---
-scp_server: 192.168.2.33
+veos_sw_upgrade_scp_server: 192.168.2.33
+
 # eos_version: "vEOS-Router64-4.23.4M.swi"
-scp_password: Labpass01!
+
+veos_sw_upgrade_cp_password: Labpass01!
