@@ -3,9 +3,10 @@
 - name: Copy eos image to router
   arista.eos.eos_command:
     commands:
-      - command: "copy scp://root@{{ veos_sw_upgrade_scp_server }}/arista-veos/{{ eos_version }} vrf mgmt flash:/{{ eos_version }}"
+      - command: "copy scp://{{ veos_sw_upgrade_un }}@{{ veos_sw_upgrade_scp_server }}/arista-veos/{{ eos_version }} vrf mgmt flash:/{{ eos_version }}"
         check_all: false
         prompt:
-          - "password:"
+          - "{{ veos_sw_upgrade_un }}@{{ veos_sw_upgrade_scp_server }}'s password:"
+         # - "password:"
         answer:
           - "{{ veos_sw_upgrade_cp_password }}"
