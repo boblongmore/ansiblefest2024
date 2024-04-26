@@ -15,7 +15,7 @@
   ansible.netcommon.cli_command:
     command: "copy scp://{{ veos_sw_upgrade_un }}@{{ veos_sw_upgrade_scp_server }}/arista-veos/{{ eos_version }} vrf mgmt flash:/{{ eos_version }}"
     prompt:
-      - "root@[\d.]+'s password:"
+      - .
     answer:
       - "{{ veos_sw_upgrade_cp_password }}"
   vars:
