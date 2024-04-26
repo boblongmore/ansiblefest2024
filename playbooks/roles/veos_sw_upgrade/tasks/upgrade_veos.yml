@@ -2,7 +2,7 @@
 - name: "Check flash for uploaded sw image {{ sw_version }}"
   arista.eos.eos_command:
     commands:
-      - command: "dir flash:/{{ sw_version }}"
+      - command: "dir flash:/{{ eos_version }}"
   register: _result
 
 - name: Ensure image is loaded
@@ -12,7 +12,7 @@
 
 - name: Modify boot config
   arista.eos.eos_config:
-    lines: "boot system flash:/{{ sw_version }}"
+    lines: "boot system flash:/{{ eos_version }}"
 
 - name: Save switch config
   arista.eos.eos_command:

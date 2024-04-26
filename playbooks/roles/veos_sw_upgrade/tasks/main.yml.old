@@ -4,11 +4,12 @@
   ansible.builtin.set_fact:
     eos_version: "vEOS-Router64-{{ sw_version }}.swi"
 
-- name: Copy sw image
-  ansible.builtin.import_tasks: copy_sw_image.yml
-
-- name: Upgrade software image to "{{ sw_version }}"
-  ansible.builtin.import_tasks: upgrade_veos.yml
+- name: Print message complete
+  ansible.builtin.debug:
+    msg:
+      - "veos_sw_upgrade initiated"
+      - "{{ dut }}"
+      - "{{ sw_version }}"
 
 - name: Publish message stating that SW upgrade is done
   ansible.builtin.include_role:
