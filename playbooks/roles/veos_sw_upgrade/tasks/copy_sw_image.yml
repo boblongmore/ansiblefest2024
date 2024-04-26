@@ -18,3 +18,5 @@
       - password:$
     answer:
       - "{{ veos_sw_upgrade_cp_password }}"
+  vars:
+    ansible_command_timeout: 60
