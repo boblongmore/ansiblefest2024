@@ -13,7 +13,7 @@
     data:
       name: "{{ inventory_hostname | lower }}"
       custom_fields:
-        initiate_upgrade: null
+        initiate_upgrade: ""
         current_sw_version: "{{ eos.ansible_facts.ansible_net_version }}"
     state: "{{ state | default('present') }}"
   delegate_to: localhost
