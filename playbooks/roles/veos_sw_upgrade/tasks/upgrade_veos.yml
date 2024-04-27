@@ -30,4 +30,4 @@
 
 - name: Pause for router reload
   ansible.builtin.pause:
-    minutes: 2
+    minutes: 3

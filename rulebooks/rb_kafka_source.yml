@@ -106,7 +106,7 @@
           - event.body.test_status == "HTTP_tests_passed"
           - event.body.test_status == "Routing_tests_passed"
           - event.body.test_status == "upgrade_sw_version_passed"
-        timeout: 3 minutes
+        timeout: 4 minutes
 
       action:
         run_job_template:
