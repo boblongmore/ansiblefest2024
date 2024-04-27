@@ -1,22 +1,24 @@
 ---
 
-# - name: Copy eos image to router
-#   arista.eos.eos_command:
-#     commands:
-#       - command: "copy scp://{{ veos_sw_upgrade_un }}@{{ veos_sw_upgrade_scp_server }}/arista-veos/{{ eos_version }} vrf mgmt flash:/{{ eos_version }}"
-#         check_all: true
-#         prompt:
-#           # - "{{ veos_sw_upgrade_un }}@{{ veos_sw_upgrade_scp_server }}'s password:"
-#           - "root@192.168.2.33's password: "
-#         answer:
-#           - "{{ veos_sw_upgrade_cp_password }}"
-
-- name: Copy images
-  ansible.netcommon.cli_command:
-    command: "copy scp://{{ veos_sw_upgrade_un }}@{{ veos_sw_upgrade_scp_server }}/arista-veos/{{ eos_version }} vrf mgmt flash:/{{ eos_version }}"
-    prompt:
-      - .
-    answer:
-      - "{{ veos_sw_upgrade_cp_password }}"
+- name: Copy eos image to router
+  arista.eos.eos_command:
+    commands:
+      - command: "copy scp://{{ veos_sw_upgrade_un }}@{{ veos_sw_upgrade_scp_server }}/arista-veos/{{ eos_version }} vrf mgmt flash:/{{ eos_version }}"
+        check_all: true
+        prompt:
+          # - "{{ veos_sw_upgrade_un }}@{{ veos_sw_upgrade_scp_server }}'s password:"
+          - "Password:"
+        answer:
+          - "{{ veos_sw_upgrade_cp_password }}"
   vars:
     ansible_command_timeout: 60
+
+# - name: Copy images
+#   ansible.netcommon.cli_command:
+#     command: "copy scp://{{ veos_sw_upgrade_un }}@{{ veos_sw_upgrade_scp_server }}/arista-veos/{{ eos_version }} vrf mgmt flash:/{{ eos_version }}"
+#     prompt:
+#       - "Password:"
+#     answer:
+#       - "{{ veos_sw_upgrade_cp_password }}"
+#   vars:
+#     ansible_command_timeout: 60

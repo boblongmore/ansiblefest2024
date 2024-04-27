@@ -10,6 +10,7 @@
 - name: Upgrade software image to "{{ sw_version }}"
   ansible.builtin.import_tasks: upgrade_veos.yml
 
+
 - name: Publish message stating that SW upgrade is done
   ansible.builtin.include_role:
     name: messages_kafka

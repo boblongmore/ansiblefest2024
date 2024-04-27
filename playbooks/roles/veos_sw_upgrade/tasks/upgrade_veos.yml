@@ -3,12 +3,12 @@
   arista.eos.eos_command:
     commands:
       - command: "dir flash:/{{ eos_version }}"
-  register: _result
+  register: result
 
 - name: Ensure image is loaded
   ansible.builtin.assert:
-    that: "'Error' not in {{ _result.stdout }}"
-
+    that:
+      - '"Error" not in result.stdout[0]'
 
 - name: Modify boot config
   arista.eos.eos_config:
