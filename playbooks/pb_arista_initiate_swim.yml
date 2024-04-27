@@ -21,7 +21,7 @@
         topic: "{{ messages_kafka_topic }}"
         data: {
           "upgrade": {
-            "upgrade_authorized": "arista_sw_upgrade_authorized",
+            "upgrade_status": "arista_sw_upgrade_authorized",
             "device_name": "{{ dut }}",
             "sw_version":  "{{ sw_version }}"
           }
@@ -35,5 +35,3 @@
         topic: "{{ messages_kafka_topic }}"
         data: "{{ lookup('ansible.builtin.template', '../templates/arista_test_run.j2') }}"
       loop: "{{ test_name }}"
-
-    # - name: send slack message
