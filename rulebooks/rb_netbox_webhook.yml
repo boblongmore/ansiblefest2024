@@ -15,9 +15,12 @@
     - name: Match EOS SW Version
       condition: >-
           event.payload.data.custom_fields.current_sw_version is not
-          search(event.payload.data.custom_fields.available_sw_version) and
+          search(event.payload.data.custom_fields.available_sw_version, ignorecase=true) and
           event.payload.data.custom_fields.initiate_upgrade == 'upgrade'
-      timeout: 1 minute
+      throttle:
+        once_within: 2 minutes
+        group_by_attributes:
+          - event.payload.data.name
 
       action:
         run_job_template:
