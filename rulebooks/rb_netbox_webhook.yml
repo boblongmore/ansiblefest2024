@@ -14,7 +14,7 @@
   rules:
     - name: Match EOS SW Version
       condition: >-
-          event.payload.data.custom_fields.current_sw_version is not search(event.payload.data.custom_fields.available_sw_version) and
+          event.payload.data.custom_fields.current_sw_version is not match(event.payload.data.custom_fields.available_sw_version) and
           event.payload.data.custom_fields.initiate_upgrade == 'upgrade'
 
       action:
