@@ -13,9 +13,10 @@
         hmac_algo: sha512
   rules:
     - name: Match EOS SW Version
-      condition: >-
-        event.payload.data.custom_fields.initiate_upgrade == 'upgrade' and
-        event.payload.data.custom_fields.available_sw_version not in event.payload.data.custom_fields.current_sw_version
+      condition:
+        all:
+          - event.payload.data.custom_fields.initiate_upgrade == 'upgrade'
+          - event.payload.data.custom_fields.available_sw_version not in event.payload.data.custom_fields.current_sw_version
 
       action:
         run_job_template:
