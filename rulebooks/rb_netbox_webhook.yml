@@ -15,8 +15,8 @@
     - name: Match EOS SW Version
       condition:
         all:
-          - event.payload.data.custom_fields.initiate_upgrade == 'upgrade'
           - event.payload.data.custom_fields.available_sw_version not in event.payload.data.custom_fields.current_sw_version
+          #- event.payload.data.custom_fields.initiate_upgrade == 'upgrade'
       throttle:
         once_within: 2 minutes
         group_by_attributes:
