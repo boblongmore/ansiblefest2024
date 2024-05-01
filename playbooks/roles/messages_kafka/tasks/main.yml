@@ -1,6 +1,6 @@
 ---
 
-- name: Use kafkaprod_module to take data and create producer message
+- name: Use kafka_python module to take data and create producer message
   bob_private_collection.kafka_python.producer_kafkapy:
     host: "{{ messages_kafka_hostname }}"
     port: "{{ messages_kafka_port | default('9092') }}"
