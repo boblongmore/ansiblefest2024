@@ -13,7 +13,6 @@
         hmac_algo: sha512
   rules:
 
-    - name:
     - name: Match EOS SW Version
       condition: >-
           event.payload.data.custom_fields.current_sw_version is not match(event.payload.data.custom_fields.available_sw_version) and
