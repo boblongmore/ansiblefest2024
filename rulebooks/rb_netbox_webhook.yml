@@ -12,15 +12,27 @@
         hmac_format: hex
         hmac_algo: sha512
   rules:
+    - name: Match sw version and set fact
+      condition: >-
+        event.payload.data.custom_fields.available_sw_version is defined and
+        event.payload.data.custom_fields.current_sw_version is defined
+
+      action:
+        set_fact:
+          ruleset: Match EOS SW Version
+          fact:
+            current_sw: "{{ event.payload.data.custom_fields.current_sw_version }}"
+            available_sw: "{{ event.payload.data.custom_fields.available_sw_version }}"
 
     - name: Match EOS SW Version
       condition: >-
-          event.payload.data.custom_fields.available_sw_version not in event.payload.data.custom_fields.current_sw_version and
-          event.payload.data.custom_fields.initiate_upgrade == 'upgrade'
+        event.payload.data.custom_fields.initiate_upgrade == 'upgrade' and
+        current_sw is not match(available_sw)
 
       action:
         print_event:
           pretty: true
+
       # action:
       #   run_job_template:
       #     name: arista-initiate-swim
