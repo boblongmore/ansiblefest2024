@@ -1,11 +1,9 @@
 # Automated Software Image Management Ansiblefest2024
 
-WWT logo
-
 
 ![Platform Pete](images/platform_pete.png)
 
-This repo was developed to showcase Ansible Automation Platform and Event-Driven Ansible.
+This repo was developed to showcase Ansible Automation Platform and Event-Driven Ansible for Red Hat Summit 2024.
 
 ## Presentation Abstract
 
@@ -20,7 +18,7 @@ Software Image Management (SWIM) is a repeatable framework in which engineers ca
 Get back to bed sooner!
 
 
-## technologies used
+## Technologies Used
 
 - Ansible Automation Platform
 - Event-Driven Ansible
@@ -31,10 +29,12 @@ Get back to bed sooner!
 
 ## Tenets of SWIM
 
+Automated testing that is extensible and modular helps improve reliability of SWIM. The Arista tests used in this presentation are located here: [github.com/boblongmore/arista_network_tests](https://github.com/boblongmore/arista_network_tests)
+
 pre-, upgrade, post-
 
 ## Why use EDA and Kafka
 
 integrations, modularity
 
-Author: Bob Longmore bob.longmore@wwt.com
+Bob Longmore bob.longmore@wwt.com
