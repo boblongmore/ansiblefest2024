@@ -17,14 +17,12 @@
       condition: >-
           event.payload.data.custom_fields.current_sw_version is not match(event.payload.data.custom_fields.available_sw_version) and
           event.payload.data.custom_fields.initiate_upgrade == 'upgrade'
+
       action:
-        print_event:
-          pretty: true
-      # action:
-      #   run_job_template:
-      #     name: arista-initiate-swim
-      #     organization: Default
-      #     job_args:
-      #       extra_vars:
-      #         dut: "{{ event.payload.data.name }}"
-      #         sw_version: "{{ event.payload.data.custom_fields.available_sw_version }}"
+        run_job_template:
+          name: arista-initiate-swim
+          organization: Default
+          job_args:
+            extra_vars:
+              dut: "{{ event.payload.data.name }}"
+              sw_version: "{{ event.payload.data.custom_fields.available_sw_version }}"
