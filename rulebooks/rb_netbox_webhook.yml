@@ -20,6 +20,7 @@
           event.payload.data.custom_fields.initiate_upgrade == 'upgrade'
       action:
         print_event:
+          pretty: true
       # action:
       #   run_job_template:
       #     name: arista-initiate-swim
