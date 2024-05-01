@@ -19,10 +19,13 @@
           event.payload.data.custom_fields.initiate_upgrade == 'upgrade'
 
       action:
-        run_job_template:
-          name: arista-initiate-swim
-          organization: Default
-          job_args:
-            extra_vars:
-              dut: "{{ event.payload.data.name }}"
-              sw_version: "{{ event.payload.data.custom_fields.available_sw_version }}"
+        print_event:
+          pretty: true
+      # action:
+      #   run_job_template:
+      #     name: arista-initiate-swim
+      #     organization: Default
+      #     job_args:
+      #       extra_vars:
+      #         dut: "{{ event.payload.data.name }}"
+      #         sw_version: "{{ event.payload.data.custom_fields.available_sw_version }}"
