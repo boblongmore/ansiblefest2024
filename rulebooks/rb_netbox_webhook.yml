@@ -34,7 +34,9 @@
 
       action:
         debug:
-          msg: "{{ event.current_sw }}"
+          msg:
+            - "{{ event.current_sw }}"
+            - "{{ event.current_cloud_sw }}"
 
       # action:
       #   run_job_template:
