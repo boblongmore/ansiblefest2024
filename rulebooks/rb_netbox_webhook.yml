@@ -19,7 +19,6 @@
 
       action:
         post_event:
-          ruleset: Match_EOS_SW_Version
           event:
             current_sw: "{{ event.payload.data.custom_fields.current_sw_version }}"
             available_sw: "{{ event.payload.data.custom_fields.available_sw_version }}"
