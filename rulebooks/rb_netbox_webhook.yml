@@ -18,9 +18,8 @@
         event.payload.data.custom_fields.current_sw_version is defined
 
       action:
-        set_fact:
-          ruleset: Match_EOS_SW_Version
-          fact:
+        post_event:
+          event:
             current_sw: "{{ event.payload.data.custom_fields.current_sw_version }}"
             available_sw: "{{ event.payload.data.custom_fields.available_sw_version }}"
 
@@ -30,7 +29,7 @@
 
       action:
         debug:
-          msg: "{{ fact.current_sw }}"
+          msg: "{{ event.current_sw }}"
 
       # action:
       #   run_job_template:
