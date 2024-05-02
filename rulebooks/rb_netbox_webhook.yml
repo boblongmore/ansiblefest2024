@@ -27,7 +27,7 @@
     - name: Match EOS SW Version
       condition: >-
         event.payload.data.custom_fields.initiate_upgrade == 'upgrade' and
-        current_sw is not match(available_sw)
+        fact.current_sw is not match(fact.available_sw)
 
       action:
         print_event:
