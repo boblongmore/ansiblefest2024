@@ -32,7 +32,7 @@
 
       action:
         debug:
-          msg: "{{ fact.current_sw }}"
+          msg: "{{ facts.current_sw }}"
 
       # action:
       #   run_job_template:
