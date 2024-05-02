@@ -22,7 +22,7 @@
         set_fact:
           fact:
             current_sw: "{{ event.payload.data.custom_fields.current_sw_version }}"
-            current_cloud_sw: "{{ event.payload.data.custom_fields.current_sw_version }}-cloud"
+            current_cloud_sw: "{{ event.payload.data.custom_fields.available_version }}-cloud"
             available_sw: "{{ event.payload.data.custom_fields.available_sw_version }}"
             initiate: "{{ event.payload.data.custom_fields.initiate_upgrade }}"
 
