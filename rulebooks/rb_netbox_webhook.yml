@@ -29,7 +29,7 @@
       condition:
         all:
           - fact.initiate == 'upgrade'
-          - fact.available_sw not in fact.current_sw
+          - fact.available_sw in fact.current_sw
 
       action:
         debug:
