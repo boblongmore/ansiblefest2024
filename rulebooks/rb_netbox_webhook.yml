@@ -27,10 +27,8 @@
             initiate: "{{ event.payload.data.custom_fields.initiate_upgrade }}"
 
     - name: Match_EOS_SW_Version
-      condition:
-        all:
-          - fact.current_sw == fact.available_cloud_sw
-          - fact.initiate == 'upgrade'
+      condition: fact.current_sw == fact.available_cloud_sw
+
 
       action:
         debug:
