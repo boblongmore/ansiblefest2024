@@ -23,6 +23,9 @@
             current_sw: "{{ event.payload.data.custom_fields.current_sw_version }}"
             available_sw: "{{ event.payload.data.custom_fields.available_sw_version }}"
 
+        debug:
+          msg: "{{ current_sw }}"
+
     - name: Match EOS SW Version
       condition: >-
         event.payload.data.custom_fields.initiate_upgrade == 'upgrade'
