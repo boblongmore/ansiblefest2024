@@ -15,18 +15,19 @@
     - name: Match sw version and set fact
       condition: >-
         event.payload.data.custom_fields.available_sw_version is defined and
-        event.payload.data.custom_fields.current_sw_version is defined
+        event.payload.data.custom_fields.current_sw_version is defined and
+        event.payload.data.custom_fields.initiate_upgrade == 'upgrade'
 
       action:
         set_fact:
           fact:
             current_sw: "{{ event.payload.data.custom_fields.current_sw_version }}"
             available_sw: "{{ event.payload.data.custom_fields.available_sw_version }}"
+            initiate: "{{ event.payload.data.custom_fields.initiate_upgrade }}"
 
     - name: Match_EOS_SW_Version
       condition:
         all:
-          - event.payload.data.custom_fields.initiate_upgrade == 'upgrade'
           - fact.current_sw is defined
 
       action:
