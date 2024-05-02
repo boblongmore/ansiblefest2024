@@ -19,13 +19,16 @@
 
       action:
         post_event:
+          ruleset: Match_EOS_SW_Version
           event:
             current_sw: "{{ event.payload.data.custom_fields.current_sw_version }}"
             available_sw: "{{ event.payload.data.custom_fields.available_sw_version }}"
 
     - name: Match_EOS_SW_Version
-      condition: >-
-        event.payload.data.custom_fields.initiate_upgrade == 'upgrade'
+      condition:
+        all:
+          - event.payload.data.custom_fields.initiate_upgrade == 'upgrade'
+          - event.current_sw is defined
 
       action:
         debug:
