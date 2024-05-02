@@ -22,15 +22,12 @@
         set_fact:
           fact:
             current_sw: "{{ event.payload.data.custom_fields.current_sw_version }}"
-            current_cloud_sw: "{{ event.payload.data.custom_fields.available_sw_version }}-cloud"
+            available_cloud_sw: "{{ event.payload.data.custom_fields.available_sw_version }}-cloud"
             available_sw: "{{ event.payload.data.custom_fields.available_sw_version }}"
             initiate: "{{ event.payload.data.custom_fields.initiate_upgrade }}"
 
     - name: Match_EOS_SW_Version
-      condition: >-
-          fact.initiate == 'upgrade' and
-          fact.available_sw != fact.current_sw and
-          fact.available_sw != fact.current_cloud_sw
+      condition: fact.current_sw != fact.available_cloud_sw
 
       action:
         debug:
