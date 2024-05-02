@@ -18,8 +18,8 @@
         event.payload.data.custom_fields.current_sw_version is defined
 
       action:
-        post_event:
-          event:
+        set_fact:
+          fact:
             current_sw: "{{ event.payload.data.custom_fields.current_sw_version }}"
             available_sw: "{{ event.payload.data.custom_fields.available_sw_version }}"
 
@@ -27,11 +27,11 @@
       condition:
         all:
           - event.payload.data.custom_fields.initiate_upgrade == 'upgrade'
-          - event.current_sw is defined
+          - fact.current_sw is defined
 
       action:
         debug:
-          msg: "{{ event.current_sw }}"
+          msg: "{{ fact.current_sw }}"
 
       # action:
       #   run_job_template:
