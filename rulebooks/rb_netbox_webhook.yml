@@ -32,19 +32,11 @@
         fact.current_sw != fact.available_sw and
         fact.initiate == 'upgrade'
 
-
       action:
-        debug:
-          msg:
-            - "{{ event.current_sw }}"
-            - "{{ event.available_cloud_sw }}"
-            - "{{ event.available_sw }}"
-
-      # action:
-      #   run_job_template:
-      #     name: arista-initiate-swim
-      #     organization: Default
-      #     job_args:
-      #       extra_vars:
-      #         dut: "{{ event.payload.data.name }}"
-      #         sw_version: "{{ event.payload.data.custom_fields.available_sw_version }}"
+        run_job_template:
+          name: arista-initiate-swim
+          organization: Default
+          job_args:
+            extra_vars:
+              dut: "{{ event.payload.data.name }}"
+              sw_version: "{{ event.payload.data.custom_fields.available_sw_version }}"
