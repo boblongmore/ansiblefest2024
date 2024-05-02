@@ -31,8 +31,8 @@
           - fact.current_sw is defined
 
       action:
-        debug:
-          msg: "{{ facts.current_sw }}"
+        print_event:
+          pretty: true
 
       # action:
       #   run_job_template:
