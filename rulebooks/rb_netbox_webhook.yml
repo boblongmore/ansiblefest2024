@@ -28,7 +28,8 @@
     - name: Match_EOS_SW_Version
       condition:
         all:
-          - fact.current_sw is defined
+          - fact.initiate == 'upgrade'
+          - fact.available_sw not in fact.current_sw
 
       action:
         debug:
