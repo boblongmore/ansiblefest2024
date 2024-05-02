@@ -25,12 +25,14 @@
             available_cloud_sw: "{{ event.payload.data.custom_fields.available_sw_version }}-cloud"
             available_sw: "{{ event.payload.data.custom_fields.available_sw_version }}"
             initiate: "{{ event.payload.data.custom_fields.initiate_upgrade }}"
+            device_name: "{{ event.payload.data.name }}"
 
     - name: Match_EOS_SW_Version
       condition: >-
         fact.current_sw != fact.available_cloud_sw and
         fact.current_sw != fact.available_sw and
-        fact.initiate == 'upgrade'
+        fact.initiate == 'upgrade' and
+        fact.device_name is defined
 
       action:
         run_job_template:
@@ -38,5 +40,5 @@
           organization: Default
           job_args:
             extra_vars:
-              dut: "{{ event.payload.data.name }}"
-              sw_version: "{{ event.payload.data.custom_fields.available_sw_version }}"
+              dut: "{{ event.device_name }}"
+              sw_version: "{{ event.available_sw }}"
