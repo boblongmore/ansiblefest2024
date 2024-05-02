@@ -28,7 +28,7 @@
     - name: Match_EOS_SW_Version
       condition: >-
           fact.initiate == 'upgrade' and
-          fact.available_sw in search(fact.current_sw)
+          fact.available_sw in match(fact.current_sw)
 
       action:
         debug:
