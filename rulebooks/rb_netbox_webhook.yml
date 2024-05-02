@@ -19,7 +19,7 @@
 
       action:
         set_fact:
-          ruleset: Match EOS SW Version
+          ruleset: 'Match EOS SW Version'
           fact:
             current_sw: "{{ event.payload.data.custom_fields.current_sw_version }}"
             available_sw: "{{ event.payload.data.custom_fields.available_sw_version }}"
