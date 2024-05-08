@@ -1,6 +1,7 @@
 ---
 - name: arista-testing
   hosts: all
+  execution_strategy: parallel
   sources:
     - name: kafka event source
       ansible.eda.kafka:
