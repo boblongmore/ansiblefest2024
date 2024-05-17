@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-# Copyright: (c) 2018, Terry Jones <terry.jones@example.org>
+# Copyright: (c) 2024, Bob Longmore <bob.longmore@wwt.com>
 # GNU General Public License v3.0+ (see COPYING or
 # https://www.gnu.org/licenses/gpl-3.0.txt)
 from __future__ import (absolute_import, division, print_function)
@@ -12,9 +12,7 @@ module: kafka_producer
 
 short_description: Module to produce topics and information to kafka
 
-# If this is part of a collection, you need to use semantic versioning,
-# i.e. the version is of the form "2.5.0" and not "2.4".
-version_added: "1.0.0"
+version_added: "1.0.1"
 
 description:
 
@@ -43,19 +41,13 @@ author:
 EXAMPLES = r'''
 # Pass in a message
 - name: Test with a message
-  my_namespace.my_collection.my_test:
-    name: hello world
-
-# pass in a message and have changed true
-- name: Test with a message and changed output
-  my_namespace.my_collection.my_test:
-    name: hello world
-    new: true
-
-# fail the module
-- name: Test failure of the module
-  my_namespace.my_collection.my_test:
-    name: fail me
+  wwt.kafka.kafka_producer:
+    host: kafka_server
+    port: 9092
+    topic: kafka_topic
+    data: {
+        "key": "value"
+    }
 '''
 
 RETURN = r'''
@@ -107,7 +99,7 @@ def run_module():
     # supports check mode
     module = AnsibleModule(
         argument_spec=module_args,
-        supports_check_mode=True
+        supports_check_mode=False
     )
 
     # produce kafka message
@@ -115,6 +107,8 @@ def run_module():
     port = module.params['port']
     topic = module.params['topic']
     data = module.params['data']
+    group_id = module.params['group_id']
+    verify_mode = module.params['verify_mode']
 
     def serializer(value):
         return json.dumps(value).encode()
