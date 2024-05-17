@@ -3,8 +3,18 @@
 - name: Place messages on kafka bus
   hosts: localhost
   gather_facts: false
+  vars:
+    messages_kafka_hostname: fedora01.lab.local
+    messages_kafka_topic: module_test
+    messages_kafka_data: {
+      "key": "value1"
+    }
 
   tasks:
-    - name: Use messages_kafka role to produce messages
-      ansible.builtin.include_role:
-        name: messages_kafka
+    - name: Use kafka_python module to take data and create producer message
+      kafka_producer:
+        host: "{{ messages_kafka_hostname }}"
+        port: "{{ messages_kafka_port | default('9092') }}"
+        verify_mode: "{{ messages_kafka_verify | default(false) }}"
+        topic: "{{ messages_kafka_topic }}"
+        data: "{{ messages_kafka_data }}"

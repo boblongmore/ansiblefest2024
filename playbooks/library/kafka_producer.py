@@ -120,16 +120,10 @@ def run_module():
             compression_type="gzip")
 
         await producer.start()
-        k_data = data
-        await producer.send(topic, k_data)
+        await producer.send(topic, data)
         await producer.stop()
 
     asyncio.run(produce())
-
-    # producer = KafkaProducer(bootstrap_servers=[f'{host}:{port}'])
-#
-    # producer = KafkaProducer(value_serializer=lambda m: json.dumps(m).encode('ascii'))
-    # producer.send(topic, {data})
 
     # if the user is working with this module in only check mode we do not
     # want to make any changes to the environment, just return the current
