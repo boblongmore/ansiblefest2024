@@ -7,8 +7,8 @@
         host: fedora01.lab.local
         port: 9092
         topic: apache
-        sasl_plain_username: admin
-        sasl_plain_password: WWTwwt1!
+        sasl_plain_username: "{{ sasl_username }}"
+        sasl_plain_password: "{{ sasl_password }}"
 
   rules:
     - name: Match sw_upgrade
