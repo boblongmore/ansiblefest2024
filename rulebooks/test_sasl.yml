@@ -9,6 +9,7 @@
         topic: apache
         sasl_plain_username: "{{ sasl_username }}"
         sasl_plain_password: "{{ sasl_password }}"
+        security_protocol: SASL_PLAINTEXT
 
   rules:
     - name: Match sw_upgrade

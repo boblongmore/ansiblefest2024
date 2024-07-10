@@ -85,6 +85,7 @@ def run_module():
         sasl_mechanism=dict(type='str', required=False),
         sasl_username=dict(type='str', required=False),
         sasl_password=dict(type='str', required=False, no_log=True),
+        security_protocol=dict(type='str', required=False, default="PLAINTEXT"),
         data=dict(type='dict', required=False)
     )
 
@@ -116,6 +117,7 @@ def run_module():
     sasl_mechanism = module.params['sasl_mechanism']
     sasl_username = module.params['sasl_username']
     sasl_password = module.params['sasl_password']
+    security_protocol = module.params['security_protocol']
     verify_mode = module.params['verify_mode']
 
     def serializer(value):
@@ -143,7 +145,8 @@ def run_module():
             compression_type="gzip",
             sasl_mechanism=sasl_mechanism,
             sasl_plain_username=sasl_username,
-            sasl_plain_password=sasl_password
+            sasl_plain_password=sasl_password,
+            security_protocol=security_protocol
             )
         try:
             await producer.start()
