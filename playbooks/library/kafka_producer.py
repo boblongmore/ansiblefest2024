@@ -28,6 +28,9 @@ options:
     verify_mode: check SSL from kafka host
     topic: the kafka topoic
     group_id: the kafka group id
+    sasl_mechanism: Only PLAIN supported for now
+    sasl_username: username for PLAINTEXT auth
+    sasl_password: password for PLAINTEXT password
 
 # Specify this value according to your collection
 # in format of namespace.collection.doc_fragment_name
@@ -50,25 +53,26 @@ EXAMPLES = r'''
     }
 '''
 
-RETURN = r'''
+# RETURN = r'''
 # These are examples of possible return values, and in general should use
 # other names for return values.
-original_message:
-    description: The original name param that was passed in.
-    type: str
-    returned: always
-    sample: 'hello world'
-message:
-    description: The output message that the test module generates.
-    type: str
-    returned: always
-    sample: 'goodbye'
-'''
+# original_message:
+#     description: The original name param that was passed in.
+#     type: str
+#     returned: always
+#     sample: 'hello world'
+# message:
+#     description: The output message that the test module generates.
+#     type: str
+#     returned: always
+#     sample: 'goodbye'
+# '''
 
 from ansible.module_utils.basic import AnsibleModule
 import json
 import asyncio
 from aiokafka import AIOKafkaProducer
+from aiokafka.errors import KafkaError, KafkaTimeoutError
 
 
 def run_module():
@@ -78,7 +82,9 @@ def run_module():
         port=dict(type='int', required=True),
         verify_mode=dict(type='bool', required=False, default=True),
         topic=dict(type='str', required=True),
-        group_id=dict(type='str', required=False),
+        sasl_mechanism=dict(type='str', required=False),
+        sasl_username=dict(type='str', required=False),
+        sasl_password=dict(type='str', required=False, no_log=True),
         data=dict(type='dict', required=False)
     )
 
@@ -99,7 +105,7 @@ def run_module():
     # supports check mode
     module = AnsibleModule(
         argument_spec=module_args,
-        supports_check_mode=False
+        supports_check_mode=True
     )
 
     # produce kafka message
@@ -107,7 +113,9 @@ def run_module():
     port = module.params['port']
     topic = module.params['topic']
     data = module.params['data']
-    group_id = module.params['group_id']
+    sasl_mechanism = module.params['sasl_mechanism']
+    sasl_username = module.params['sasl_username']
+    sasl_password = module.params['sasl_password']
     verify_mode = module.params['verify_mode']
 
     def serializer(value):
@@ -117,13 +125,39 @@ def run_module():
         producer = AIOKafkaProducer(
             bootstrap_servers=f'{host}:{port}',
             value_serializer=serializer,
-            compression_type="gzip")
+            compression_type="gzip",
+            )
+        try:
+            await producer.start()
+            await producer.send(topic, data)
+            await producer.stop()
+        except KafkaTimeoutError:
+            print("producer timeout")
+        except KafkaError as err:
+            print(f"KafkaError: {err}")
 
-        await producer.start()
-        await producer.send(topic, data)
-        await producer.stop()
+    async def plain_produce():
+        producer = AIOKafkaProducer(
+            bootstrap_servers=f'{host}:{port}',
+            value_serializer=serializer,
+            compression_type="gzip",
+            sasl_mechanism=sasl_mechanism,
+            sasl_plain_username=sasl_username,
+            sasl_plain_password=sasl_password
+            )
+        try:
+            await producer.start()
+            await producer.send(topic, data)
+            await producer.stop()
+        except KafkaTimeoutError:
+            print("producer timeout")
+        except KafkaError as err:
+            print(f"KafkaError: {err}")
 
-    asyncio.run(produce())
+    if sasl_mechanism == 'PLAIN':
+        asyncio.run(plain_produce())
+    else:
+        asyncio.run(produce())
 
     # if the user is working with this module in only check mode we do not
     # want to make any changes to the environment, just return the current

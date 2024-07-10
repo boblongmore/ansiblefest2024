@@ -5,9 +5,11 @@
   gather_facts: false
   vars:
     messages_kafka_hostname: fedora01.lab.local
-    messages_kafka_topic: module_test
+    # messages_kafka_hostname: 192.168.2.32
+    messages_kafka_topic: apache
+    messages_kafka_port: 9092
     messages_kafka_data: {
-      "key": "value1"
+      "test_auth": "message-received"
     }
 
   tasks:
@@ -15,6 +17,9 @@
       kafka_producer:
         host: "{{ messages_kafka_hostname }}"
         port: "{{ messages_kafka_port | default('9092') }}"
-        verify_mode: "{{ messages_kafka_verify | default(false) }}"
+        # averify_mode: "{{ messages_kafka_verify | default(false) }}"
         topic: "{{ messages_kafka_topic }}"
         data: "{{ messages_kafka_data }}"
+        sasl_mechanism: PLAIN
+        sasl_username: admin
+        sasl_password: WWTwwt1!
