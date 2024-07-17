@@ -8,7 +8,7 @@
   arista.eos.eos_command:
     commands:
       - command: "del flash:/{{ reset_demo_env_new_eos_version }}"
-  register: result
+  ignore_errors: true
 
 - name: Save switch config
   arista.eos.eos_command:
