@@ -10,5 +10,5 @@
 - name: Update netbox to reflect new software image
   ansible.builtin.include_role:
     name: update_netbox
-    vars:
-      update_sw_version: true
+  vars:
+    update_sw_version: true
