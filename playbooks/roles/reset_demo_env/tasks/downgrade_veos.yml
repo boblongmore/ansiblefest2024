@@ -1,0 +1,34 @@
+---
+
+- name: Modify boot config
+  arista.eos.eos_config:
+    lines: "boot system flash:/{{ eos_version }}"
+
+- name: Delete newer eos version file
+  arista.eos.eos_command:
+    commands:
+      - command: "del flash:/{{ reset_demo_env_new_eos_version }}"
+  register: result
+
+- name: Save switch config
+  arista.eos.eos_command:
+    commands: "write"
+
+- name: Reload router
+  arista.eos.eos_command:
+    commands:
+      - command: "reload"
+        prompt:
+          - \[confirm\]
+        answer:
+          - "{{ reload_answer | default('y') }}"
+        newline: false
+
+# - name: Pause for router reload
+#   ansible.builtin.pause:
+#     minutes: 3
+
+- name: Wait for router reload
+  ansible.builtin.wait_for_connection:
+    delay: 90
+    timeout: 200

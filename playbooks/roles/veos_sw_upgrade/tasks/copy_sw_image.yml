@@ -9,7 +9,7 @@
           # - "{{ veos_sw_upgrade_un }}@{{ veos_sw_upgrade_scp_server }}'s password:"
           - "Password:"
         answer:
-          - "{{ veos_sw_upgrade_cp_password }}"
+          - "{{ veos_sw_upgrade_scp_password }}"
   vars:
     ansible_command_timeout: 60
 

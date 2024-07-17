@@ -1,0 +1,20 @@
+---
+
+- name: Reset routers to old version and reset netbox
+  gather_facts: false
+  hosts: device_types_veos
+  vars_files:
+    - "./vars/slack_info.yml"
+    - "./vars/kafka_info.yml"
+    - "./vars/netbox_info.yml"
+
+  tasks:
+    - name: Update current sw version in netbox
+      ansible.builtin.include_role:
+        name: reset_demo_env
+
+
+      # vars:
+      #   update_sw_version: true
+
+    # - name: send slack message
