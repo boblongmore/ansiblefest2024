@@ -13,6 +13,4 @@
       ansible.builtin.include_role:
         name: update_netbox
       vars:
-        update_sw_version: true
-
-    # - name: send slack message
+        update_sw_version: true # noqa: var-naming[no-role-prefix]
