@@ -37,6 +37,7 @@ The kafka producer module is available as part of the [wwt.kafka](https://galaxy
 
 Automated testing that is extensible and modular helps improve reliability of SWIM.
 
+Standardized and predictable testing runs pre-upgrade and post-upgrade. This allows for safe upgrades and the ability to upgrade in batches in a more timely and predictable manner.
 pre-, upgrade, post-
 
 ## Why use EDA and Kafka
