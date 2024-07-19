@@ -27,9 +27,15 @@ Get back to bed sooner!
 - [Kafka](https://hub.docker.com/r/landoop/fast-data-dev)
 - Slack
 
+## Other Ansible Projects Referenced
+
+The Arista tests used in this presentation are located here: [github.com/boblongmore/arista_network_tests](https://github.com/boblongmore/arista_network_tests)
+
+The kafka producer module is available as part of the [wwt.kafka](https://galaxy.ansible.com/ui/repo/published/wwt/kafka/) collection in galaxy.
+
 ## Tenets of SWIM
 
-Automated testing that is extensible and modular helps improve reliability of SWIM. The Arista tests used in this presentation are located here: [github.com/boblongmore/arista_network_tests](https://github.com/boblongmore/arista_network_tests)
+Automated testing that is extensible and modular helps improve reliability of SWIM.
 
 pre-, upgrade, post-
 
