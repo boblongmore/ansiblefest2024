@@ -1,4 +1,4 @@
-# Automated Software Image Management Ansiblefest2024
+# Automated Software Image Management Ansiblefest 2024/Red Hat Summit 2024
 
 
 ![Platform Pete](images/platform_pete.png)
@@ -37,12 +37,32 @@ The kafka producer module is available as part of the [wwt.kafka](https://galaxy
 
 Automated testing that is extensible and modular helps improve reliability of SWIM.
 
-Standardized and predictable testing runs pre-upgrade and post-upgrade. This allows for safe upgrades and the ability to upgrade in batches in a more timely and predictable manner.
+You can separate SWIM into three areas: pre-upgrade, upgrade, post-upgrade.
 
-pre-, upgrade, post-
+**Pre-**
+1. Prepare – Inform all parties. Ensure necessary information is present
+2. Assert – Ensure device is in steady state, ensure services the device supports are in steady state
+3. Notify – The device is ready for upgrade
+
+**Upgrade**
+1. Prepare - Software file is loaded on to device and save configuration
+2. Upgrade - point system to new file and reboot
+
+**Post-**
+1. Receive – The device is upgraded. Ensure necessary information is present	.
+2. Assert – Ensure device is in steady state, ensure services the device supports are in steady state
+3. Notify – The device upgrade is complete. Clean up (tickets, documentation, monitoring, etc.)
+
 
 ## Why use EDA and Kafka
 
-integrations, modularity
+**Modularity:**
+- Allows our tests to be standalone playbooks
+- Allows for use inside AAP and from without
+
+**Further Integrations:**
+- The tests kafka messages are available to any system that can interact with Kafka
+- Allows reactive execution of tests and actions
+- Allows integration to 3rd party tools such as Slack, influxdb, Servicenow, etc.
 
 Bob Longmore bob.longmore@wwt.com
