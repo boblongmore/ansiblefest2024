@@ -14,12 +14,10 @@
 
   tasks:
     - name: Publish kafka message authorizing upgrade
-      wwt.kafka.kafka_producer:
-        host: "{{ messages_kafka_hostname }}"
-        port: "{{ messages_kafka_port }}"
-        verify_mode: false
-        topic: "{{ messages_kafka_topic }}"
-        data: {
+      ansible.builtin.include_role:
+        name: messages_kafka
+      vars:
+        messages_kafka_data: {
           "upgrade": {
             "upgrade_status": "arista_sw_upgrade_authorized",
             "device_name": "{{ dut }}",
@@ -28,10 +26,8 @@
         }
 
     - name: Publish kafka message with test test_results
-      wwt.kafka.kafka_producer:
-        host: "{{ messages_kafka_hostname }}"
-        port: "{{ messages_kafka_port }}"
-        verify_mode: false
-        topic: "{{ messages_kafka_topic }}"
-        data: "{{ lookup('ansible.builtin.template', '../templates/arista_test_run.j2') }}"
+      ansible.builtin.include_role:
+        name: messages_kafka
+      vars:
+        messages_kafka_data: "{{ lookup('ansible.builtin.template', '../templates/arista_test_run.j2') }}"
       loop: "{{ test_name }}"
