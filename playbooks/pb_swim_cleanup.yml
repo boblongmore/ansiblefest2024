@@ -4,7 +4,6 @@
   gather_facts: false
   hosts: "{{ dut | default('eda-sw100')}}"
   vars_files:
-    - "./vars/slack_info.yml"
     - "./vars/kafka_info.yml"
     - "./vars/netbox_info.yml"
 
@@ -14,3 +13,14 @@
         name: update_netbox
       vars:
         update_sw_version: true # noqa: var-naming[no-role-prefix]
+
+    - name: Publish message that upgrade testing is "complete"
+      ansible.builtin.include_role:
+        name: messages_kafka
+      vars:
+        messages_kafka_data: {
+          "upgrade": {
+            "upgrade_status": "post-upgrade-complete",
+            "device_name": "{{ dut }}",
+          }
+        }
