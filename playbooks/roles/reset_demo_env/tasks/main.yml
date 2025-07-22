@@ -1,0 +1,14 @@
+---
+
+- name: Set fact for sw image
+  ansible.builtin.set_fact:
+    eos_version: "vEOS-lab.swi"
+
+- name: Downgrade software image
+  ansible.builtin.import_tasks: downgrade_veos.yml
+
+- name: Update netbox to reflect new software image
+  ansible.builtin.include_role:
+    name: update_netbox
+  vars:
+    update_sw_version: true
