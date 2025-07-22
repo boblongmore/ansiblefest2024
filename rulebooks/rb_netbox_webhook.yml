@@ -7,10 +7,10 @@
       ansible.eda.webhook:
         host: 0.0.0.0
         port: 5000
-        hmac_secret: 'ansiblefest2024'
-        hmac_header: 'X-Hook-Signature'
-        hmac_format: hex
-        hmac_algo: sha512
+        # hmac_secret: 'ansiblefest2024'
+        # hmac_header: 'X-Hook-Signature'
+        # hmac_format: hex
+        # hmac_algo: sha512
   rules:
     - name: Match sw version and set fact
       condition: >-
