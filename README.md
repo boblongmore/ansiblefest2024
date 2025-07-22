@@ -1,4 +1,4 @@
-# Automated Software Image Management Ansiblefest2024
+# Automated Software Image Management Ansiblefest 2024/Red Hat Summit 2024
 
 
 ![Platform Pete](images/platform_pete.png)
@@ -27,14 +27,42 @@ Get back to bed sooner!
 - [Kafka](https://hub.docker.com/r/landoop/fast-data-dev)
 - Slack
 
+## Other Ansible Projects Referenced
+
+The Arista tests used in this presentation are located here: [github.com/boblongmore/arista_network_tests](https://github.com/boblongmore/arista_network_tests)
+
+The kafka producer module is available as part of the [wwt.kafka](https://galaxy.ansible.com/ui/repo/published/wwt/kafka/) collection in galaxy.
+
 ## Tenets of SWIM
 
-Automated testing that is extensible and modular helps improve reliability of SWIM. The Arista tests used in this presentation are located here: [github.com/boblongmore/arista_network_tests](https://github.com/boblongmore/arista_network_tests)
+Automated testing that is extensible and modular helps improve reliability of SWIM.
 
-pre-, upgrade, post-
+You can separate SWIM into three areas: pre-upgrade, upgrade, post-upgrade.
+
+**Pre-**
+1. Prepare – Inform all parties. Ensure necessary information is present
+2. Assert – Ensure device is in steady state, ensure services the device supports are in steady state
+3. Notify – The device is ready for upgrade
+
+**Upgrade**
+1. Prepare - Software file is loaded on to device and save configuration
+2. Upgrade - point system to new file and reboot
+
+**Post-**
+1. Receive – The device is upgraded. Ensure necessary information is present	.
+2. Assert – Ensure device is in steady state, ensure services the device supports are in steady state
+3. Notify – The device upgrade is complete. Clean up (tickets, documentation, monitoring, etc.)
+
 
 ## Why use EDA and Kafka
 
-integrations, modularity
+**Modularity:**
+- Allows our tests to be standalone playbooks
+- Allows for use inside AAP and from without
+
+**Further Integrations:**
+- The tests kafka messages are available to any system that can interact with Kafka
+- Allows reactive execution of tests and actions
+- Allows integration to 3rd party tools such as Slack, influxdb, Servicenow, etc.
 
 Bob Longmore bob.longmore@wwt.com

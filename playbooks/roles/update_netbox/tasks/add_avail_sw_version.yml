@@ -8,6 +8,6 @@
     data:
       name: "{{ inventory_hostname | lower }}"
       custom_fields:
-        available_sw_version: "{{ update_netbox_avail_sw_version}}"
+        available_sw_version: "{{ update_netbox_avail_sw_version }}"
     state: "{{ state | default('present') }}"
   delegate_to: localhost

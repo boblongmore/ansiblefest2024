@@ -15,6 +15,10 @@
 
   tasks:
 
+    - name: Pause to let router adjacencies form
+      ansible.builtin.pause:
+        minutes: 1
+
     - name: Publish kafka message with upgrade status
       ansible.builtin.include_role:
         name: messages_kafka
