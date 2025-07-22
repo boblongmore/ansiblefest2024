@@ -37,7 +37,7 @@
       action:
         run_job_template:
           name: arista-initiate-swim
-          organization: Default
+          organization: Ansiblefest2025
           job_args:
             extra_vars:
               dut: "{{ event.device_name }}"

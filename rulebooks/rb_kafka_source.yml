@@ -17,7 +17,7 @@
       action:
         run_job_template:
           name: Arista-test-interfaces
-          organization: Default
+          organization: Ansiblefest2025
           job_args:
             extra_vars:
               dut: "{{ event.body.device_name }}"
@@ -29,7 +29,7 @@
       action:
         run_job_template:
           name: Arista-test-routing
-          organization: Default
+          organization: Ansiblefest2025
           job_args:
             extra_vars:
               dut: "{{ event.body.device_name }}"
@@ -40,7 +40,7 @@
       action:
         run_job_template:
           name: Arista-http-tests
-          organization: Default
+          organization: Ansiblefest2025
           job_args:
             extra_vars:
               dut: "{{ event.body.device_name }}"
@@ -51,7 +51,7 @@
       action:
         run_job_template:
           name: Arista-test-sw-version
-          organization: Default
+          organization: Ansiblefest2025
           job_args:
             extra_vars:
               dut: "{{ event.body.device_name }}"
@@ -72,7 +72,7 @@
       action:
         run_job_template:
           name: Arista-upgrade-device
-          organization: Default
+          organization: Ansiblefest2025
           job_args:
             extra_vars:
               dut: "{{ events.m_0.body.upgrade.device_name }}"
@@ -91,7 +91,7 @@
       action:
         run_job_template:
           name: Arista-post-upgrade
-          organization: Default
+          organization: Ansiblefest2025
           job_args:
             extra_vars:
               dut: "{{ event.body.dut }}"
@@ -112,7 +112,7 @@
       action:
         run_job_template:
           name: Arista-swim-cleanup
-          organization: Default
+          organization: Ansiblefest2025
           job_args:
             extra_vars:
               dut: "{{ events.m_0.body.upgrade.device_name }}"
